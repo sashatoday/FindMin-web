@@ -1,0 +1,1 @@
+web: java -jar target/FindMin-web-1.0-SNAPSHOT.jar

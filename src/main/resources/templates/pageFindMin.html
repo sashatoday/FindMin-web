@@ -1,0 +1,65 @@
+<html>
+    <head>        
+        <script type="text/javascript">
+        
+            window.onload = function () {
+
+                document.getElementById("FindButton").onclick = function RLoadingFunc(e) {
+                    e.preventDefault();
+
+                    var LoadResult = function (receivedData) {
+						document.getElementById("ResultText").value = receivedData;
+                    }
+
+                    var handleStateChange = function () {
+                        switch (xmlHttp.readyState) {
+                            case 0 : // UNINITIALIZED
+                            case 1 : // LOADING
+                            case 2 : // LOADED
+                            case 3 : // INTERACTIVE
+                                break;
+                            case 4 : // COMPLETED
+                                LoadResult(xmlHttp.responseText);
+                                break;
+                            default:
+                                alert("error");
+                        }
+                    }
+
+                    var ArrayText = document.getElementById("ArrayText").value;
+                    if (ArrayText.length < 1) {
+                        alert("Please, print integers in the textbox.");
+                        return;
+                    } else
+                    {
+                        var xmlHttp = new XMLHttpRequest();
+                        xmlHttp.open('GET', "http://localhost:8080/reporting?data=" + ArrayText, true);
+                        xmlHttp.onreadystatechange = handleStateChange;
+                        xmlHttp.send(null);
+                    }
+                }
+            }
+
+        </script>     
+    </head>
+    <body>
+        <h1>FindMin application</h3>
+        <form id="MainForm">
+            <table border=0.9>
+                <tr>
+                    <td><p><font size="3">1. Print space-separated integers:</font><br></td>
+                    <td><input id="ArrayText" type="text" size="50"></td>
+                </tr>
+                <tr>
+                	<td><p><font size="3">2. Press:</font><br></td>
+                    <td align=left><button id="FindButton">FindMin</button></td>
+                </tr>
+                <tr>
+                	<td><p><font size="3">3. Result:</font><br></td>
+                    <td><input id="ResultText" type="text" size="7" readonly="true"></td>
+                    <div class='ResultDiv' id='ResultDiv'></div>
+                </tr>
+            </table>
+        </form>
+    </body>
+</html>
