@@ -33,7 +33,7 @@
                     } else
                     {
                         var xmlHttp = new XMLHttpRequest();
-                        xmlHttp.open('GET', "http://localhost:8080/reporting?data=" + ArrayText, true);
+                        xmlHttp.open('GET', "http://localhost:5000/reporting?data=" + ArrayText, true);
                         xmlHttp.onreadystatechange = handleStateChange;
                         xmlHttp.send(null);
                     }
