@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ReportController {
 
-    @RequestMapping(value = "/reporting", method = RequestMethod.GET, produces = "application/*")
+    @RequestMapping(value = "/reporting", method = RequestMethod.GET, produces = "plain/text")
     public String reporting(@RequestParam(value="data", defaultValue = "0") String array) {
         return FindMin.doit(array).toString();
     }
